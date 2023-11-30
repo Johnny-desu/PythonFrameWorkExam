@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Music</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .ranking {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .music-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            justify-content: center;
+        }
+        .music-item img {
+            width: 250px;
+            height: 60;
+            margin-right: 5px;
+        }
+        .music-item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>ジャンル:邦楽</h1>
+    <div class="ranking">
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@KenshiYonezu'">
+            <img src="{% static '/img/yk.jpg' %}" alt="KenshiYonezu's Image">
+        </div>
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@Vaundy'">
+            <img src="{% static '/img/vd.jpg' %}" alt="Vaundy's Image">
+        </div>
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@Ayase_YOASOBI'">
+            <img src="{% static '/img/yoso.jpg' %}" alt="YOASOBI's Image">
+        </div>
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@KingGnuOfficial'">
+            <img src="{% static '/img/kg.jpg' %}" alt="KingGnu's Image">
+        </div>
+    </div>
+
+    <h1>ジャンル:洋楽</h1>
+    <div class="ranking">
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@TheBeatles'">
+            <img src="{% static '/img/tb.jpg' %}" alt="TheBeatles's Image">
+        </div>
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@Queen'">
+            <img src="{% static '/img/queen.jpg' %}" alt="Queen's Image">
+        </div>
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@GreenDay'">
+            <img src="{% static '/img/gd.jpg' %}" alt="GreenDay's Image">
+        </div>
+        <div class="music-item" onclick="location.href='https://www.youtube.com/@metallica'">
+            <img src="{% static '/img/metallica.jpg' %}" alt="Metallica's Image">
+        </div>
+    </div>
+</body>
+</html>

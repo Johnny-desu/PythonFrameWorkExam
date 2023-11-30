@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .ranking {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .game-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            justify-content: center;
+        }
+        .game-item img {
+            width: 250px;
+            height: 60;
+            margin-right: 5px;
+        }
+        .game-item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>ジャンル:FPS</h1>
+    <div class="ranking">
+        <div class="game-item" onclick="location.href='https://www.counter-strike.net/cs2'">
+            <img src="{% static '/img/cs2.jpg' %}" alt="CounterStrike2's Image">
+        </div>
+        <div class="game-item" onclick="location.href='https://overwatch.blizzard.com/ja-jp/'">
+            <img src="{% static '/img/ow2.jpg' %}" alt="OverWatch2's Image">
+        </div>
+        <div class="game-item" onclick="location.href='https://playvalorant.com/ja-jp/'">
+            <img src="{% static '/img/valo.jpg' %}" alt="Valorant's Image">
+        </div>
+        <div class="game-item" onclick="location.href='https://pubg.com/ja/events/unknown'">
+            <img src="{% static '/img/pubg.jpg' %}" alt="PUBG's Image">
+        </div>
+    </div>
+
+    <h1>ジャンル:RPG</h1>
+    <div class="ranking">
+        <div class="game-item" onclick="location.href='https://undertale.jp/'">
+            <img src="{% static '/img/ut.jpg' %}" alt="UnderTail's Image">
+        </div>
+        <div class="game-item" onclick="location.href='https://persona5.jp/'">
+            <img src="{% static '/img/p5.jpg' %}" alt="Persona5TheRoyal 's Image">
+        </div>
+        <div class="game-item" onclick="location.href='https://hsr.hoyoverse.com/ja-jp/home'">
+            <img src="{% static '/img/Hsr.jpg' %}" alt="崩壊:StarRail's Image">
+        </div>
+        <div class="game-item" onclick="location.href='https://www.jp.square-enix.com/ffvii_remake/'">
+            <img src="{% static '/img/ff7r.jpg' %}" alt="FinalFantasySevenRemake's Image">
+        </div>
+    </div>
+</body>
+</html>

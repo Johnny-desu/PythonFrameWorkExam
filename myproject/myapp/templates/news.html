@@ -1,0 +1,487 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather Forecast</title>
+
+        <link rel="stylesheet" href="https://gvs.weathernews.jp/top/css/sanitize.css"><link rel="stylesheet" href="https://gvs.weathernews.jp/top/css/app.min.css?231023">
+        <link rel="stylesheet" href="https://weathernews.jp/onebox/css/header_v2.1.min.css"><link rel="stylesheet" href="https://weathernews.jp/onebox/css/ranking.min.css">
+
+        <script>
+            !function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});
+            var m=t.getElementsByTagName(a)[0],r=t.createElement(a);
+            r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-NQD3CBD7",m.parentNode.insertBefore(r,m)}(window,document,"script""dataLayer")
+        </script>
+        <script src="//weathernews.jp/s/js/ads_prebid_async.js?14"></script>
+        <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+        <script>var webid,ck_webid=(String(document.cookie).match(/web_id=(.+?)(;|$)/)||[])[1],webidurl="https://weathernews.jp/api/webid";
+            if(ck_webid)webid=ck_webid,fetch(webidurl+"?webid="+webid);
+            else{var xhr=new XMLHttpRequest;if(xhr.open("GET",webidurl,!1),xhr.send(),200==xhr.status)
+            {var jsonObj=JSON.parse(xhr.responseText);jsonObj.uuid&&(webid=jsonObj.uuid)}}
+            if(webid){var wnum=parseInt(webid.slice(-1),16);googletag.cmd.push(function(){googletag.pubads().setPublisherProvidedId(webid)})}
+        </script>
+        <script>var sendParamList=["fm"],sendParamStr="",p=location.search.split("?");
+            if(p[1])for(var q=p[1].split("&").sort(function(a,t){return a>t?1:-1}),l=q.length,i=0;i<l;i++)for(var kv=q[i].split("="),j=0;
+            j<sendParamList.length;j++)if(kv[0]===sendParamList[j]){sendParamStr+=q[i]+"&";break}var Path=location.pathname,c=Path.match(/\?/)?"&":"?";
+            Path+=c+sendParamStr.slice(0,-1);
+            var wniapp_for_custom_dimension=navigator.userAgent.match(/weathernews/)?1:0
+        </script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-72962242-1"></script>
+        <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],
+            gtag("js",new Date),
+            gtag("config","UA-72962242-1",{page_path:Path,dimension4:wniapp_for_custom_dimension}),
+            gtag("config","G-744EN7FZFC",{page_path:Path,app_flag:wniapp_for_custom_dimension,user_id:webid})
+        </script>
+        <script>var use_prebid=!0;!function(){var e=document.createElement("script");
+            navigator.userAgent.search(/iphone|ipad|ipod|android/i)?e.src="https://flux-cdn.com/client/weathernews/flux_weathernews_PC_AS_TM.min.js":
+            e.src="https://flux-cdn.com/client/weathernews/flux_weathernews_SP_AS_TM.min.js",
+            e.async="async";
+            var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}()
+        </script>
+        <style>[v-cloak]{opacity:0}</style></head><body id="body">
+            <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQD3CBD7" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            
+            <article id="content">
+                <article id="main">
+                    <section id="DLbannar_smp" style="padding-bottom:10px;display:none">
+                        <figure class="banner">
+                            <a href="//weathernews.jp/s/download/weathernewstouch.html?fm=doTop" onclick='ga_and_go(this.href,"appDL_smp")'>
+                                <img src="https://weathernews.jp/onebox/img/banner_app320x100@2x.jpg" alt="">
+                            </a>
+                        </figure>
+                    </section>
+                    
+            <section class="block inner">
+                <div class="block__lv02">
+                <div id="weather-switch" class="swicthArea wrap--middle">
+                    <div class="switchContent">
+                        <div class="switchContent__item">
+                            <div class="map-box" v-show="fcst[map_idx]">
+                                <figure>
+                                    <img id="map" v-bind:src="fcst[map_idx]" style="width:100%;aspect-ratio:1/1">
+                                    <a id="map_highlight">
+                                    </a>
+                                </figure>
+                            </div>
+
+                                <div class="mapSwitch">
+                                <p class="mapSwitch__item" data-num="1" v-bind:class="map_idx == 0 ? 'act' : ''" v-on:click="change_date(0)">
+                                    <span class="text">1<span class="week">金</span></span></p>
+                                <p class="mapSwitch__item sat" data-num="2" v-bind:class="map_idx == 1 ? 'act' : ''" v-on:click="change_date(1)">
+                                    <span class="text">2<span class="week">土</span></span></p>
+                                <p class="mapSwitch__item sun" data-num="3" v-bind:class="map_idx == 2 ? 'act' : ''" v-on:click="change_date(2)">
+                                    <span class="text">3<span class="week">日</span></span></p>
+                                <p class="mapSwitch__item" data-num="4" v-bind:class="map_idx == 3 ? 'act' : ''" v-on:click="change_date(3)">
+                                    <span class="text">4<span class="week">月</span></span></p>
+                                <p class="mapSwitch__item" data-num="5" v-bind:class="map_idx == 4 ? 'act' : ''" v-on:click="change_date(4)">
+                                    <span class="text">5<span class="week">火</span></span></p>
+                                <p class="mapSwitch__item" data-num="6" v-bind:class="map_idx == 5 ? 'act' : ''" v-on:click="change_date(5)">
+                                    <span class="text">6<span class="week">水</span></span></p>
+                                <p class="mapSwitch__item" data-num="7" v-bind:class="map_idx == 6 ? 'act' : ''" v-on:click="change_date(6)">
+                                    <span class="text">7<span class="week">木</span></span></p>
+                                <p class="mapSwitch__item" data-num="8" v-bind:class="map_idx == 7 ? 'act' : ''" v-on:click="change_date(7)">
+                                    <span class="text">8<span class="week">金</span></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+</article>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+                <script src="https://weathernews.jp/s/js/wniutil.min.js"></script>
+                <script src="https://weathernews.jp/s/js/vue.min.2.0.js"></script>
+                <script src="//weathernews.jp/s/js/launch.js?1"></script>
+                <script>var use_sticky_ad=!0</script><script src="//weathernews.jp/s/js25/welcome.js?2"></script>
+                <script src="https://weathernews.jp/s/js/axios.0.27.2.min.js"></script>
+                <script>function force_replace_lazyload()
+                            {$(window).width()>768&&replace_dataOriginal_to_src(".list-news__img img.lazy")}
+                        function replace_dataOriginal_to_src(t)
+
+                            {Array.prototype.forEach.call(document.querySelectorAll(t),function(t)
+                                {var e=t.getAttribute("data-original"),n=t.getAttribute("src");
+                                t.getAttribute("data-original")&&e!=n&&t.setAttribute("src",t.getAttribute("data-original"))})}
+                        function search_city1()
+
+                        {ga_and_go("https://weathernews.jp/onebox/search.html?loc="+document.getElementById("search_city_input1").value,"link_search")}function search_city_input(t)
+
+                        {var e=document.getElementById(t).value;if(""!=e)
+                        {ga_event("search_query "+e);var n=$(window).width();search_result=n>768?"search_result1":"search_result2",search_city(e)}}
+
+                        function search_city(t)
+                        {$.getJSON("/onebox/api_search.cgi?callback=?",
+                        {query:t,reflat:"35.691667",reflon:"139.75 ",lang:"{ { LANG } } "},
+                        function(e)
+                        {if(1!=e.length)
+                            {for(a=0;a<e.length;a++)if(e[a].loc==t)return void(location.href=e[a].url+"&temp=c&lang=ja");var n="";
+                            n+='<p class="search_tit">検索結果 ('+e.length+") </p>",n+='<ul class="topics_list">';
+                                for(var a=0;
+                                a<e.length;a++)n+='<li class="topics_item">',
+                                    n+="<a href=\"javascript:ga_and_go('"+(e[a].url+"&temp=c&lang=ja")+"',
+                                    '"+("search "+e[a].loc)+"')\">"+e[a].loc+"</a>",n+="</li>";n+="</ul>",
+                                    document.getElementById(search_result).innerHTML=n,$("#"+search_result).fadeIn(500,function()
+                                    {$("#"+search_result).css("background-color","#ccddff"),
+                                    setTimeout(function(){$("#"+search_result).css("background-color","white")},150)})}
+                                    else location.href=e[0].url+"&temp=c&lang=ja"})
+                            }
+                        function disp_tplist(t){
+                            for(var e=0,n="",a=0;a<t.length&&!(e>=5);a++)n+='<div class="list-news__item">',
+                                n+='<a href="'+t[a].url+'"></a>',n+='<div class="inner">',n+='<figure class="list-news__img">',
+                                    n+='<img class="lazy" src="https://smtgvs.weathernews.jp/onebox/img/dummy1.png" data-original="'+t[a].thumb_img+'">',n+="</figure>",n+='<div class="list-news__cont">',n+='<p class="list-news__tit">'+t[a].title+"</p>",
+                                                    n+='<p class="list-news__info"><span class="day">'+t[a].edit_tstr+"</span></p>",n+="</div></div></div>",e++;document.getElementById("tplist").innerHTML=n}
+                        function get_tplist()
+
+                        {$.getJSON("https://weathernews.jp/s/topics/json/rec_ch_zero.json",{t:wniutil.nocache10m}).done(disp_tplist)}
+                        function ga_event(t)
+                        {var e="dotop "+t;ga("send","event","dotop","click",e,1)}
+
+                        function ga_and_go(t,e)
+                        {var n="dotop "+e;ga("send","event","dotop","click",n,1,{hitCallback:ga_timeout(function(){location.href=t})})}
+                        
+                        function ga_timeout(t)
+                        {function e(){n||(n=!0,t())}var n=!1;return setTimeout(e,1e3),e}
+                        
+                        function init()
+                        {"1"==global_loc&&$(".no-global").remove(),"ja"!=lang&&$(".no-ja").remove(),get_tplist()}var akey,mdbauth,chk_key,chk,countlog_tag="dotop",global_loc="0",lang="ja";window.onload=function()
+                        {$("img.lazy").lazyload(),force_replace_lazyload()},window.onresize=function()
+                        {force_replace_lazyload()},$(document).ready(function()
+                        {!function()
+                            {var t,e=!1,n=document.referrer;$(window).bind("unload beforeunload",function(){e=!0}),re=new RegExp(location.hostname,"i"),
+                            t=!!n.match(re),$(".historyback").bind("click",function(){var n=this;return t?(history.back(),setTimeout(function()
+                                {e||(location.href=$(n).attr("href"))},100)):location.href=$(this).attr("href"),!1})}()}),document.addEventListener("DOMContentLoaded",init)</script><script>var area = '全国';
+    var areacode = 'JAPAN';
+    var map_w = 1024; var map_h = 1024;
+    var panel_w = 115; var panel_h = 174;
+    var highlight_point = '';
+    var historyList;
+    if(navigator.cookieEnabled){
+        if (typeof window.localStorage !== 'undefined'){
+            historyList = JSON.parse(localStorage.getItem('wx_history'))
+        }
+    }
+    var vm = new Vue({
+        'el': '#content',
+        'data': {
+            'argv': {},
+            'ua':   {},
+            'map_idx': wniutil.cookie.fmap_idx || 0,
+            'fcst' : [ 'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231201.png?5668723',
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231202.png?5668723', 
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231203.png?5668723', 
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231204.png?5668723', 
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231205.png?5668723', 
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231206.png?5668723', 
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231207.png?5668723', 
+                        'https://site.weathernews.jp/site/forecast/image/map/JAPAN.20231208.png?5668723' ],
+            'comment' : {
+            
+            },
+            'title' : {
+                
+            },
+            'youtubeId':'',
+            'youtubeThumb':'',
+            'ranking_list':[]
+        },
+        'methods': {
+            strftime: function(fmt, d) {
+                if(d) {
+                    return wniutil.simple_strftime(fmt, d, ['日','月','火','水','木','金','土']);
+                }
+            },
+            youtubeLinkURL() {
+                var linkURL;
+                if(this.$data.youtubeId) {
+                    linkURL = "https://youtu.be/" + this.$data.youtubeId;
+                }
+                else {
+                    linkURL = "https://www.youtube.com/user/weathernews"
+                }
+                if(smart_webview == 'webview') {
+                    linkURL = linkURL.replace(/^https/, 'opensafaris');
+                }
+                return linkURL;
+            },
+            setRankings() {
+                let self = this
+                axios
+                .get("https://site.weathernews.jp/site/onebox/landmark/amusement/json/ranking.json",{
+                    params : {
+                        tm:wniutil.nocache
+                    }
+                })
+                .then(function(res){
+                    if(res.data){
+                        if(res.data['info'].length > 5) {
+                            var max_rank = 5
+                        }
+                        else {
+                            max_rank = res.data['info'].length
+                        }
+                        for(var i = 0; i < max_rank; i ++){
+                            let elm = {}
+                            elm.name = res.data['info'][i].name
+                            elm.page = res.data['info'][i].pagePath
+                            elm.ranking = res.data['info'][i].ranking
+                            self.ranking_list.push(elm)
+                        }
+                    }
+                })
+            },
+            getRankClass: function(rank) {
+                if( rank === 1 ){ return "rank1" }
+                else if(rank === 2){ return "rank2" }
+                else if(rank >= 3){return "rank"}
+                else{ return "" }
+            }
+        },
+    });
+    
+    var _vm = new Vue({
+        el: '#header',
+        data: {
+            historyList: historyList,
+            'fcst_hist': []
+        },
+        methods: {
+            getWx(el) {
+                return axios.get("https://site.weathernews.jp/lba/wxdata/api_data_ss1?lat=" + el.lat + "&lon=" + el.lon, {
+                    params: {
+                        tm: wniutil.nocache
+                    }
+                }).then(function(p) {
+                    const elm = {};
+                    elm.telop = "https://weathernews.jp/onebox/img/wxicon/header_wIcon_" + p.data.mrf[0].WX + "@2x.png";
+                    elm.high = p.data.mrf[0].MAXT;
+                    elm.low = p.data.mrf[0].MINT;
+                    elm.url = el.url
+                    elm.cityname = el.cityname
+                    return elm
+                })
+            },
+            historyClose(id){
+                _vm.fcst_hist.splice(id,1)
+                historyList.splice(id,1)
+                localStorage.setItem('wx_history',JSON.stringify(historyList));
+            },
+            async process() {
+                this.fcst_hist = await Promise.all(this.historyList.map(history => this.getWx(history)))
+            }
+        }
+    })
+    
+    function change_date(idx) {
+        vm.$data.map_idx = idx;
+        cookie_write('fmap_idx', idx, 1/144); 
+    }
+    
+    function custom_imagemap(e) {
+        var pos = get_mouse_pos(e);
+    
+        for(var p in map_pos) {
+            var lt_x = map_pos[p].x - panel_w/2;
+            var rb_x = map_pos[p].x + panel_w/2;
+            var lt_y = map_pos[p].y - panel_h/2;
+            var rb_y = map_pos[p].y + panel_h/2;
+    
+            if(
+                lt_x < pos.x && pos.x < rb_x &&
+                lt_y < pos.y && pos.y < rb_y
+            )
+            {
+                location.href = map_pos[p].url;
+                break;
+            }
+        }
+    
+    }
+    
+    function get_movietable(){
+        var movietableurl = 'https://site.weathernews.jp/site/live/json/list.json';
+        $.getJSON(movietableurl,{'tm':wniutil.nocache})
+        .done(function(p){
+            vm.youtubeId = p["live"].id;
+            vm.youtubeThumb = p["live"].thumbnail;
+        })
+        .fail(function(){
+            vm.youtubeId = "";
+            vm.youtubeThumb = "https://smtgvs.cdn.weathernews.jp/wnl/img/WNI_sns_hd.png";
+        });
+    }
+    
+    function highlight_imagemap(e) {
+        var pos = get_mouse_pos(e);
+    
+        var hit = false;
+        for(var p in map_pos) {
+            var lt_x = map_pos[p].x - panel_w/2;
+            var rb_x = map_pos[p].x + panel_w/2;
+            var lt_y = map_pos[p].y - panel_h/2;
+            var rb_y = map_pos[p].y + panel_h/2;
+    
+            if(
+                lt_x < pos.x && pos.x < rb_x &&
+                lt_y < pos.y && pos.y < rb_y
+            )
+            {
+                if(highlight_point == p) return;
+    
+                var highlight = document.getElementById('map_highlight');
+                highlight.style.width  = Math.ceil(panel_w / pos.ratio) + 'px';
+                highlight.style.height = Math.ceil(panel_h / pos.ratio) + 'px';
+                highlight.style.top    = Math.floor(lt_y/pos.ratio) + 'px';
+                highlight.style.left   = Math.floor(lt_x/pos.ratio) + 'px';
+                highlight.style.display = 'block';
+                highlight.setAttribute('href', map_pos[p].url);
+    
+                hit = true;
+                highlight_point = p;
+    
+                break;
+    
+                            }
+        }
+        if(hit == false) {
+            if(highlight_point == p) return;
+            var highlight = document.getElementById('map_highlight');
+            highlight.style.width  = 0;
+            highlight.style.height = 0;
+            highlight.style.display = 'none';
+    
+            highlight_point = '';
+        }
+    
+    }
+    
+    function get_mouse_pos(e) {
+        var mouse_x = e.offsetX;
+        var mouse_y = e.offsetY;
+        var img_w = e.target.clientWidth;
+        var img_h = e.target.clientHeight;
+        var org_w = e.target.naturalWidth;
+        var org_h = e.target.naturalHeight;
+        var ratio = org_w / img_w;
+    
+        var pos_x = Math.floor(mouse_x * ratio);
+        var pos_y = Math.floor(mouse_y * ratio);
+    
+        return {x: pos_x, y: pos_y, ratio: ratio};
+    }
+    
+    function init() {
+    
+        Vue.set(vm, 'smart_carrier',  smart_carrier);
+        Vue.set(vm, 'smart_platform', smart_platform);
+        Vue.set(vm, 'smart_webview',  smart_webview);
+        Vue.set(vm, 'argv',           argv);
+    
+        if(smart_platform === '') document.getElementById('map').addEventListener('mousemove', highlight_imagemap);
+        else document.getElementById('map').addEventListener('click', custom_imagemap);
+        vm.setRankings();
+    }
+    document.addEventListener('DOMContentLoaded', init);</script><script>function list_top3(){$(window).outerWidth()<=770?($("#list_sp").css({display:"block"}),document.getElementById("DLbannar_smp").style.display="block"):($("#list_pc").css({display:"block"}),document.getElementById("DLbannar_pc").style.display="block")}function setDevice(){""==smart_platform||wniutil.is_sugotoku_app()&&(document.getElementById("yt__live").style.display="none")}$(window).on("resize",function(){list_top3()}),document.addEventListener("DOMContentLoaded",function(){list_top3(),get_movietable(),setDevice(),navigator.cookieEnabled&&null!=_vm.historyList&&_vm.historyList.length>0?_vm.process():($(".wniLogo").css({width:"185px",height:"40px"}),$(".headerWeatherList").css({position:"initial"}))})</script><script>var ads;
+    function gpt_init() {
+        var fmp,rmp;
+        var gpt_conf = [
+        {
+            'unit_code': '/284705699/MWS/Top_below_forecast',
+            'size': [[320, 100], [320, 50], 'fluid', [300, 250], [336, 280], [200, 200], [320, 180]],
+            'slot_id': 'div-gpt-ad-1609113730521-0',
+            'apstag': true,
+            'targeting': {'area': 'JAPAN'}
+        },
+        {
+            'unit_code': '/284705699/MWS/Top_btm',
+            'size': [[300, 250], [320, 180], [300, 600], [320, 50], 'fluid', [200, 200], [320, 100], [120, 600], [336, 280], [160, 600]],
+            'slot_id': 'div-gpt-ad-1609114308807-0',
+            'mapping': [
+            { 'displaySize': [952, 400], 'adSize': [[300,250],[336,280],[320,50],[320,100],[200,200],[300,600],[160,600],[120,600]] },
+            { 'displaySize': [  0,   0], 'adSize': [[300,250],[336,280],[320,50],[320,100],[200,200]] }
+            ],
+            'apstag': true,
+            'targeting': {'area': 'JAPAN'}
+        },
+        {
+            'unit_code': '/284705699/MWS/Top_btm2',
+            'size': [[336, 280], [120, 600], [320, 100], [300, 250], [320, 50], [300, 600], [160, 600], [200, 200], [320, 180]],
+            'slot_id': 'div-gpt-ad-1672119234635-0',
+            'mapping': [
+            { 'displaySize': [952, 400], 'adSize': [[300,250],[336,280],[320,50],[320,100],[200,200],[300,600],[160,600],[120,600]] },
+            { 'displaySize': [  0,   0], 'adSize': [[300,250],[336,280],[320,50],[320,100],[200,200]] }
+            ],
+            'apstag': true,
+            'targeting': {'area': 'JAPAN'}
+        },
+        {
+            'unit_code': '/284705699/MWS/Top_btf',
+            'size':  [[300, 250], [200, 200], [320, 180], [336, 280], 'fluid', [320, 50], [320, 100]],
+            'slot_id': 'div-gpt-ad-1609113870165-0',
+            'mapping': [
+            { 'displaySize': [952, 400], 'adSize': [[200, 200], [300, 250], [320, 180], [1,1]] },
+            { 'displaySize': [  0,   0], 'adSize': [[200, 200], [320, 100], [320, 180], [320, 50], [336, 280], [300, 250], [1,1]] }
+            ],
+            'apstag': true,
+            'targeting': {'area': 'JAPAN'}
+        }
+        ];
+        if(smart_platform){
+            fmp = 100
+            rmp = 50
+        } else {
+            fmp = 0
+            rmp = 0
+            gpt_conf.push({
+                    'unit_code': '/284705699/Onebox/Onebox_stickyad_pc',
+                    'size': [[970, 90], [640, 100], [640, 50], [950, 90], [728, 90], [950, 70]],
+                    'slot_id': 'div-gpt-ad-1657185267868-0',
+                    'apstag': true,
+            })
+        }
+        var sticky_conf = {
+            'default' :  {"unit_code":"/284705699/MWS/Top_sticky", "size":[320,50],"slot_id":"div-gpt-ad-sticky","apstag":true},
+        }
+        sticky_conf['sugotoku'] = sticky_conf['smartpass'] = sticky_conf['apppass'] = sticky_conf['app'] = sticky_conf.default;
+    
+        ads = new WNIAds({'gpt_conf': gpt_conf, 'use_default': true, 'lazyload': { fetchMarginPercent: fmp, renderMarginPercent: rmp}, 'gpt_sticky_conf': sticky_conf, "sticky": {'disableApp': true}, "use_prebids": use_prebid});
+        setTimeout(() => {
+            googletag.pubads().addEventListener('slotRenderEnded', (e) => {
+                var slotId = e.slot.getSlotId().getDomId()
+                if (slotId === 'div-gpt-ad-1657185267868-0') {
+                    var target = document.getElementById(slotId)
+                    if (target.childNodes[0].hasChildNodes() === false) {
+                        var wrap = target.parentNode
+                        wrap.style.display = 'none'
+                    }
+                }
+            })
+        }, 500);
+    }
+    gpt_init();
+    function close_sticky_pc() {
+            $('#sticky_pc').hide();
+        }
+    
+        var stickyElem = document.getElementById('sticky_pc')
+        if(smart_platform == ''){
+            var stickyAdsControl = (event) => {
+                if(Object.keys(ads['slots']).length > 0){
+                    $("#footer").css("margin-bottom", "100px");
+                    if(window.scrollY >= 200) {
+                        stickyElem.classList.add('show')
+                        stickyElem.classList.remove('hide')
+                    } else {
+                        stickyElem.classList.add('hide')
+                    }
+                } else if(Object.keys(ads['slots']).length == 0 && window.scrollY > 100){
+                    $('#sticky_pc').hide();
+                }
+            }
+            window.addEventListener('scroll', stickyAdsControl)
+        }</script>
+    </html>

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Sports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .ranking {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .sports-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            justify-content: center;
+        }
+        .sports-item img {
+            width: 250px;
+            height: 60;
+            margin-right: 5px; 
+        }
+        .sports-item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>ジャンル:球技</h1>
+    <div class="ranking">
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@fifa'">
+            <img src="{% static '/img/soccer.jpg' %}" alt="Soccer's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@MLB'">
+            <img src="{% static '/img/bb.jpg' %}" alt="BaseBall's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@tennistv'">
+            <img src="{% static '/img/tennis.jpg' %}" alt="Tennis's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@WTTGlobal'">
+            <img src="{% static '/img/pingpong.jpg' %}" alt="PingPong's Image">
+        </div>
+    </div>
+
+    <div class="ranking">
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@NBA'">
+            <img src="{% static '/img/basket.jpg' %}" alt="BasketBall's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@volleyballworld'">
+            <img src="{% static '/img/vb.jpg' %}" alt="VolleyBall's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@WorldRugby'">
+            <img src="{% static '/img/rugby.jpg' %}" alt="Rugby's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@HandballWorld0'">
+            <img src="{% static '/img/hb.jpg' %}" alt="HandBall's Image">
+        </div>
+    </div>
+
+    <h1>ジャンル:武道</h1>
+    <div class="ranking">
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@ZennipponKendoRenmei'">
+            <img src="{% static '/img/kendo.jpg' %}" alt="Kendo's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@JKFOFFICIALCHANNEL'">
+            <img src="{% static '/img/karate.jpg' %}" alt="Karate's Image">
+        </div>
+        <div class="sports-item" onclick="location.href='https://www.youtube.com/@sumo-video'">
+            <img src="{% static '/img/sumo.jpg' %}" alt="Sumo's Image">
+        </div>
+    </div>
+</body>
+</html>

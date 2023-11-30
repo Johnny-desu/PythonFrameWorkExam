@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Manga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+        .ranking {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .manga-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            justify-content: center;
+        }
+        .manga-item img {
+            width: 250px;
+            height: 60;
+            margin-right: 5px;
+        }
+        .manga-item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>ジャンル:ジャンプ作品</h1>
+    <div class="ranking">
+        <div class="manga-item" onclick="location.href='https://one-piece.com/'">
+            <img src="{% static '/img/op.jpg' %}" alt="OnePiece's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://heroaca.com/'">
+            <img src="{% static '/img/mha.jpg' %}" alt="MyHeroAcademia's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://jujutsukaisen.jp/'">
+            <img src="{% static '/img/jk.jpg' %}" alt="Jujutsukaisen's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://dr-stone.jp/'">
+            <img src="{% static '/img/ds.jpg' %}" alt="DoctorStone's Image">
+        </div>
+    </div>
+    <div class="ranking">
+        <div class="manga-item" onclick="location.href='https://naruto-official.com/'">
+            <img src="{% static '/img/naruto.jpg' %}" alt="Naruto's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://bleach-anime.com/'">
+            <img src="{% static '/img/bleach.jpg' %}" alt="Bleach's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://spy-family.net/'">
+            <img src="{% static '/img/sf.jpg' %}" alt="SpyFamily's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://chainsawman.dog/'">
+            <img src="{% static '/img/cm.jpg' %}" alt="ChainsawMan's Image">
+        </div>
+    </div>
+
+    <h1>ジャンル:マガジン作品</h1>
+    <div class="ranking">
+        <div class="manga-item" onclick="location.href='https://7-taizai.net/'">
+            <img src="{% static '/img/tsds.jpg' %}" alt="TheSevenDeadlySins's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://shingeki.tv/final/'">
+            <img src="{% static '/img/aot.jpg' %}" alt="AttackonTitan's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://fireforce-anime.jp/'">
+            <img src="{% static '/img/enen.jpg' %}" alt="Fire Force's Image">
+        </div>
+        <div class="manga-item" onclick="location.href='https://www.fairytail-tv.com/'">
+            <img src="{% static '/img/ft.jpg' %}" alt="FairyTail's Image">
+        </div>
+    </div>
+</body>
+</html>

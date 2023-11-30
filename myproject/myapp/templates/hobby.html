@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hobby</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #000000;
+            color: #000000;
+        }
+
+        #tm-wrap {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tm-site-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tm-site-header h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tm-site-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .product {
+            margin-bottom: 30px;
+            border: 1px solid #e6e6e6;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product__description h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product__description p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .product__description a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .product__description .btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .product__description .btn:hover {
+            background-color: #45a049;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="tm-bg"></div>
+    <div id="tm-wrap">
+        <div class="tm-main-content">
+            <div class="container tm-site-header-container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
+                        <div class="tm-site-header">
+                            <h1>My Hobbies</h1>
+                            <img src="{% static 'img/hobby.gif' %}" style="float: left;">
+                        </div>                        
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="content">
+                            <div class="grid">
+                                <div class="grid__item" id="game-link">
+                                    <div class="product">
+                                        <div class="tm-nav-link">
+                                            <i class="fas fa-music fa-3x tm-nav-icon"></i>
+                                            <span class="tm-nav-text">趣味①</span>
+                                            <div class="product__bg"></div>        
+                                        </div>                                  
+                                        <div class="product__description">
+                                            <div class="row mb-3">
+                                                <div class="col-12">    
+                                                    <h2>Music</h2>
+                                                    <p>私の好きなアーティストを掲載しています</p>
+                                                </div>
+                                            </div>                                      
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center"> 
+                                                    <div class="btn-group" role="group" aria-label="Next Pages">
+                                                        <a href="/music" class="btn btn-primary ">watch the music</a>
+                                                    </div>
+                                                </div>                       
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid__item" id="manga-link">
+                                    <div class="product">
+                                        <div class="tm-nav-link">
+                                            <i class="fas fa-running fa-3x tm-nav-icon"></i>
+                                            <span class="tm-nav-text">趣味②</span>
+                                            <div class="product__bg"></div>            
+                                        </div>                                     
+                                        <div class="product__description">
+                                            <div class="p-sm-4 p-2">
+                                                <div class="row mb-3">
+                                                    <div class="col-12">
+                                                        <h2>Sports</h2>
+                                                        <p>私の好きなスポーツを掲載しています。</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 text-center"> 
+                                                        <div class="btn-group" role="group" aria-label="Next Pages">
+                                                            <a href="/sports" class="btn btn-primary ">watch the sports</a>
+                                                        </div>
+                                                    </div>                       
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>                       
+                    </div>
+                </div>                
+            </div>
+            <footer>
+                <p class="small tm-copyright-text">Copyright &copy; <span class="tm-current-year">2023</span>/Nishizaki co., Ltd.
+            </footer>
+        </div> <!-- .tm-main-content -->  
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://www.tooplate.com/js/main.js"></script>
+    <script>
+        function setupFooter() {
+            var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
+            var main = $('.tm-main-content');
+            if($(window).height() < pageHeight) {
+                main.addClass('tm-footer-relative');
+            }
+            else {
+                main.removeClass('tm-footer-relative');   
+            }
+        }
+        $(function(){
+            setupFooter();
+            $(window).resize(function(){
+                setupFooter();
+            });
+            $('.tm-current-year').text(new Date().getFullYear());  
+        });
+    </script>             
+</body>
+</html>
